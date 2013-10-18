@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>URL</th>
+                    <th>User</th>
+                    <th>Notes</th>
+                    <th>Likes</th>
+                    <th>Comments</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for clip in object_list %}
+                <tr>
+                    <td>{{ clip.title|default:"-" }}</td>
+                    <td>{{ clip.url }}</td>
+                    <td>{{ clip.user }}</td>
+                    <td>
+                        {% if clip.notes.count > 0 %}
+                            True
+                        {% else %}
+                            False
+                        {% endif %}
+                    </td>
+                    <td>{{ clip.likes.count }}</td>
+                    <td>{{ clip.comments.count }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock content %}
